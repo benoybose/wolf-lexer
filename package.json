@@ -1,0 +1,40 @@
+{
+  "name": "wolf-lexer",
+  "description": "Yet another lexer module in nodejs.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/benoybose/wolf-lexer",
+  "bugs": "https://github.com/benoybose/wolf-lexer/issues",
+  "license": "GPL",
+  "main": "lib/wolf-lexer.js",
+  "author": {
+    "name": "Benoy Bose",
+    "email": "benoybose@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benoybose/wolf-lexer"
+  },
+  "keywords": [],
+  "dependencies": {
+    "lodash": "latest",
+    "q": "latest",
+    "debug": "latest"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-util": "^3.0.1",
+    "gulp-bump": "^0.1.11",
+    "gulp-jscs": "^1.1.2",
+    "gulp-jshint": "^1.8.4",
+    "gulp-mocha": "^1.1.0",
+    "coveralls": "^2.11.1",
+    "should": "^4.0.4",
+    "jshint-stylish": "^0.4.0",
+    "gulp-load-plugins": "^0.6.0",
+    "gulp-plumber": "^0.6.5"
+  },
+  "scripts": {
+    "coveralls": "gulp test && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test": "gulp test"
+  }
+}
