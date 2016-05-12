@@ -1,8 +1,7 @@
 # wolf-lexer 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coveralls-image]][coveralls-url]
 
-Yet another lexer module in nodejs.
-
+Wolf-Lexer is a general purpose lexcial analysis module for nodejs applications to implement features of tokenize and parse a given text.
 
 ## Install
 
@@ -11,22 +10,34 @@ $ npm install --save wolf-lexer
 ```
 
 
-## Usage
+## Basic Usage
 
 ```javascript
-var wolfLexer = require('wolf-lexer');
-wolfLexer(); // "awesome"
+var WolfLexer = require('wolf-lexer');
+
+var patternWord = /[a-zA-Z]+/;
+var patternWhiteSpace = /[\s]/;
+
+var kindWord = "word";
+var kindSpace = "white_space";
+var inputTwoDashes = "hello _* _ world";
+
+var lexer = new WolfLexer();
+lexer.resumeOnError = true; // Do not stop scanning if invalid patterns found
+
+lexer.addRule(patternWord, kindWord); // Adding rules
+lexer.addRule(patternWhiteSpace, kindSpace);
+
+var tokens = [];
+var errors = [];
+
+lexer.scan(inputTwoDashes, function(t) {
+    tokens.push(t); // Saving tokens
+}, function(err) {
+    errors.push(err); // Getting errors
+});
+
 ```
-
-## API
-
-_(Coming soon)_
-
-
-## Contributing
-
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [gulp](http://gulpjs.com/).
-
 
 ## License
 

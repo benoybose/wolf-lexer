@@ -1,7 +1,7 @@
 {
   "name": "wolf-lexer",
   "description": "Yet another lexer module in nodejs.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/benoybose/wolf-lexer",
   "bugs": "https://github.com/benoybose/wolf-lexer/issues",
   "license": "GPL",
