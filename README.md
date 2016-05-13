@@ -1,5 +1,5 @@
 # wolf-lexer 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coveralls-image]][coveralls-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status](https://coveralls.io/repos/github/benoybose/wolf-lexer/badge.svg?branch=master)](https://coveralls.io/github/benoybose/wolf-lexer?branch=master)
 
 Wolf-Lexer is a general purpose lexcial analysis module for nodejs applications to implement features of tokenize and parse a given text.
 
