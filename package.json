@@ -4,7 +4,7 @@
   "version": "0.0.3",
   "homepage": "https://github.com/benoybose/wolf-lexer",
   "bugs": "https://github.com/benoybose/wolf-lexer/issues",
-  "license": "GPL",
+  "license": "MIT",
   "main": "lib/wolf-lexer.js",
   "author": {
     "name": "Benoy Bose",
