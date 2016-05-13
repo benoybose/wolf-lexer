@@ -119,6 +119,32 @@ describe('WolfLexer', function() {
 		    errors[0].position.should.be.equal(6); // First error at position (6)
 		    errors[1].position.should.be.equal(9); // Second error at position (9)
 		});
+
+		it('should omit white space characters in between tokens', function() {
+			var numberPattern = /[0-9]+/;
+			var numberKind = "number";
+			var varPattern = /(var)/;
+			var varKind = "var";
+			var idPattern = /\w+/;
+			var idKind = "id";
+			var assignPattern = /\=/;
+			var assignKind = "assign";
+			var semiColonPattern = /\;/;
+			var semiColonKind = "semi-colon";
+			var lexer = new WolfLexer();
+
+			var input = "var count = 123;";
+
+			lexer.addRule(numberPattern, numberKind);
+			lexer.addRule(varPattern, varKind);
+			lexer.addRule(idPattern, idKind);
+			lexer.addRule(assignPattern, assignKind);
+			lexer.addRule(semiColonPattern, semiColonKind);
+
+			var tokens = [];
+			lexer.scan(input, function(t) { tokens.push(t); });
+			tokens.length.should.be.equal(5);
+		});
 	});
 
 	describe('#reset()', function() {
