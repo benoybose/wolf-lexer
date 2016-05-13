@@ -29,6 +29,11 @@ describe('WolfLexer', function() {
 			lexer.rules[0].pattern.should.be.equal(patternId);
 			lexer.rules[0].kind.should.be.equal(kindId);
 		});
+
+		it('should throw error if the pattern doesn\'t have a function called exec', function() {
+			var lexer = new WolfLexer();
+			(function() {lexer.addRule({}, kindId);}).should.throw();
+		});
 	});
 
 	describe('#scan()', function() {

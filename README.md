@@ -39,6 +39,17 @@ lexer.scan(inputTwoDashes, function(t) {
 
 ```
 
+## API Documentation
+### WolfLexer
+WolfLexer is the main class that exposes the functions for adding rules and scan the text input.
+
+#### addRule
+```javascript
+addRule(pattern, kind);
+```
+Adds a rule to scan the text.
+
+
 ## License
 
 Copyright (c) 2016 Benoy Bose. Licensed under the GPL license.
