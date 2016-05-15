@@ -48,12 +48,22 @@ WolfLexer is the main class that exposes the functions for adding rules and scan
 addRule(pattern, kind);
 ```
 Adds a rule to scan the text.
+- _pattern_ An instance of RegExp that matches the expected token. However, its not neccessary that it should be a RegExp instance, rather it could be any object which expose a function called 'exec' that behaves as exactly as that of RegExp.
+- _kind_ A unique string that represents kind of token. eg. 'id', 'function', 'variable' etc
+
+### scan
+```javascript
+scan(source, callback_token, callback_error)
+```
+Scans the given input strings that gives result against previously added rules.
+- _source_ An input string to scan
+- *callback_token* Call back function of type fucntion(token) that receives tokens that macthes each rules in the sequence of scanning
+- *callback_error* Call back function of type function(err) that receives error information whenever an error is produced during the scanning
 
 
 ## License
 
-Copyright (c) 2016 Benoy Bose. Licensed under the GPL license.
-
+Copyright (c) 2016 Benoy Bose. Licensed under the MIT license.
 
 
 [npm-url]: https://npmjs.org/package/wolf-lexer
