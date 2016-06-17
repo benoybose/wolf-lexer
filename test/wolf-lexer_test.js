@@ -175,11 +175,50 @@ describe('WolfLexer', function() {
 		});
 	});
 
-    describe('#inStepMode', function() {
+    describe('#scan #next (in step mode)', function() {
         it('may accept wth no callback to work in step mode.', function () {
             var lexer = new WolfLexer();
             lexer.addRule(patternWord, kindWord);
-            lexer.scan('hello world');
+            var handler = lexer.scan('hello world');
+            handler.text.should.be.eql('hello world');
+            handler.lexer.should.be.eql(lexer);
+
+            var t1 = handler.next();
+            t1.symbol.should.be.eql('hello');
+            handler.text.should.be.eql(' world');
+
+            t1.position.should.be.eql(0);
+            handler.position.should.be.eql(5);
+
+            var t2 = handler.next(true);
+            t2.symbol.should.be.eql('world');
+            t2.kind.should.be.eql('word');
+        });
+
+        it('should throw exception on encoutering invalid characters', function () {
+            var lexer = new WolfLexer();
+            lexer.addRule(patternWord, kindWord);
+            var handler = lexer.scan('hello, world');
+            (function () {
+                handler.next();
+                handler.next();
+            }).should.throw();
+        });
+
+        it('should not throw exception on encoutering invalid characters in resumeOnError', function () {
+            var lexer = new WolfLexer();
+            lexer.addRule(patternWord, kindWord);
+            lexer.resumeOnError = true;
+            var handler = lexer.scan('hello, world');
+            (function () {
+                var t1 = handler.next();
+                var t2 = handler.next();
+                t1.symbol.should.be.eql('hello');
+                t2.symbol.should.be.eql('world');
+            }).should.not.throw();
+            handler.hasErrors().should.be.ok;
+            var t2 = handler.next(true);
+            assert.equal(t2, null);
         });
     });
 });
