@@ -97,6 +97,15 @@ describe('WolfLexer', function() {
 			tokens.length.should.be.equal(2);
 		});
 
+        it('should rethrow exception from the callback function', function() {
+            var lexer = new WolfLexer();
+            lexer.addRule(patternWord, kindWord);
+            lexer.addRule(patternWhiteSpace, kindSpace);
+            (function() {lexer.scan(inputTwoDashes, function(t) {
+                throw new Error('Exception from token callback.');
+            }, function(e) {})}).should.throw();
+        });
+
 		it('should not stop on error.', function() {
 		    var lexer = new WolfLexer();
 		    lexer.resumeOnError = true;
@@ -165,4 +174,12 @@ describe('WolfLexer', function() {
 		    lexer.rules.length.should.be.equal(0);
 		});
 	});
+
+    describe('#inStepMode', function() {
+        it('may accept wth no callback to work in step mode.', function () {
+            var lexer = new WolfLexer();
+            lexer.addRule(patternWord, kindWord);
+            lexer.scan('hello world');
+        });
+    });
 });
