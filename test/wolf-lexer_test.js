@@ -195,6 +195,21 @@ describe('WolfLexer', function() {
             t2.kind.should.be.eql('word');
         });
 
+				it('should return <null> on end of file or source', function() {
+					var lexer = new WolfLexer();
+					lexer.addRule(patternWord, kindWord);
+					var handler = lexer.scan('hello world');
+					handler.text.should.be.eql('hello world');
+					handler.lexer.should.be.eql(lexer);
+
+					var t1 = handler.next();
+					var t2 = handler.next();
+					t1.should.not.equal(null);
+					t2.should.not.equal(null);
+					var t3 = handler.next();
+					assert.equal(t3, null);
+				});
+
         it('should throw exception on encoutering invalid characters', function () {
             var lexer = new WolfLexer();
             lexer.addRule(patternWord, kindWord);
